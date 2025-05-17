@@ -7,6 +7,8 @@ import com.github.wenqiglantz.service.orderservice.persistence.entity.Customer;
 import com.github.wenqiglantz.service.orderservice.persistence.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class OrderService {
 
     private final CustomerRepository customerRepository;
+    @Autowired
+    Tracer tracer;
 
     public void consumeCustomerWasCreated(CustomerWasCreated customerWasCreated) {
         String customerId = customerWasCreated.getCustomerId();
